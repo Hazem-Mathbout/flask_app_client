@@ -4,8 +4,9 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
+ 
 import time
-from selenium.webdriver.chrome.service import ChromeDriverManager
+from webdriver_manager.chrome import ChromeDriverManager
 import os
 
 app = Flask(__name__)
@@ -28,10 +29,12 @@ def extract_numerical_value(text):
 def scrape_and_display(product_url):
     chrome_options = webdriver.ChromeOptions()
     # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+    chrome_driver_path = ChromeDriverManager().install()
+    service = webdriver.ChromeService(executable_path=chrome_driver_path)
     chrome_options.add_argument('--headless')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36'
     chrome_options.add_argument(f'user-agent={user_agent}')
-    driver = webdriver.Chrome(ChromeDriverManager().install() ,options=chrome_options)
+    driver = webdriver.Chrome(service= service,  options=chrome_options)
     result = {
         "result_text": "",
         "price": 0,
