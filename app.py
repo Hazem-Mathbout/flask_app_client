@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
 import time
+from selenium.webdriver.chrome.service import ChromeDriverManager
 import os
 
 app = Flask(__name__)
@@ -30,7 +31,7 @@ def scrape_and_display(product_url):
     chrome_options.add_argument('--headless')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36'
     chrome_options.add_argument(f'user-agent={user_agent}')
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(ChromeDriverManager().install() ,options=chrome_options)
     result = {
         "result_text": "",
         "price": 0,
