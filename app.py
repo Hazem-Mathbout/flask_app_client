@@ -33,7 +33,7 @@ def scrape_and_display(product_url):
     print("List files in the 'drivers' directory:", files_in_drivers)
     # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # chrome_driver_path = ChromeDriverManager().install()
-    chrome_driver_path = "./drivers/chromedriver"
+    chrome_driver_path = os.path.abspath("./drivers/chromedriver")
     service = webdriver.ChromeService(executable_path=chrome_driver_path)
     chrome_options.add_argument('--headless')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.28 Safari/537.36'
