@@ -6,8 +6,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
  
 import time
-from webdriver_manager.chrome import ChromeDriverManager
-import os
 
 app = Flask(__name__)
 def click_on_elements(driver):
@@ -29,10 +27,11 @@ def extract_numerical_value(text):
 def scrape_and_display(product_url):
     chrome_options = webdriver.ChromeOptions()
     # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    chrome_driver_path = ChromeDriverManager().install()
+    # chrome_driver_path = ChromeDriverManager().install()
+    chrome_driver_path = "./drivers/chromedriver"
     service = webdriver.ChromeService(executable_path=chrome_driver_path)
     chrome_options.add_argument('--headless')
-    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36'
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.28 Safari/537.36'
     chrome_options.add_argument(f'user-agent={user_agent}')
     driver = webdriver.Chrome(service= service,  options=chrome_options)
     result = {
