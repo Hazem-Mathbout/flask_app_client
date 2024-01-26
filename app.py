@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
- 
+import os 
 import time
 
 app = Flask(__name__)
@@ -26,6 +26,8 @@ def extract_numerical_value(text):
         return 0
 def scrape_and_display(product_url):
     chrome_options = webdriver.ChromeOptions()
+    print("Current directory:", os.getcwd())
+    print("List files in the current directory:", os.listdir())
     # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # chrome_driver_path = ChromeDriverManager().install()
     chrome_driver_path = "./drivers/chromedriver"
