@@ -28,6 +28,9 @@ def scrape_and_display(product_url):
     chrome_options = webdriver.ChromeOptions()
     print("Current directory:", os.getcwd())
     print("List files in the current directory:", os.listdir())
+    drivers_directory = "./drivers"
+    files_in_drivers = os.listdir(drivers_directory)
+    print("List files in the 'drivers' directory:", files_in_drivers)
     # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     # chrome_driver_path = ChromeDriverManager().install()
     chrome_driver_path = "./drivers/chromedriver"
