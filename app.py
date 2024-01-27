@@ -38,7 +38,7 @@ def scrape_and_display(product_url):
     # chrome_driver_path = os.path.abspath("./drivers/chromedriver")
     # service = webdriver.ChromeService(executable_path= ChromeDriverManager().install())
     
-    service = webdriver.ChromeService(executable_path= os.environ.get("CHROMEDRIVER_PATH"))
+    service = webdriver.ChromeService(executable_path= ChromeDriverManager().install())
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--disable-extensions")
     chrome_options.add_argument("--proxy-server='direct://'")
