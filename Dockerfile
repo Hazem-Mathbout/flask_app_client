@@ -9,4 +9,4 @@ RUN apt-get update && \
     pip install --no-cache-dir -r requirements.txt
 COPY . .
 # CMD uvicorn main:app --host 0.0.0.0 --port $PORT
-CMD ["uvicorn", "app.py", "--host", "0.0.0.0", "--port", "80"]
+CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:80"]
