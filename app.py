@@ -67,6 +67,9 @@ def scrape_and_display(product_url):
         click_on_elements(driver)
         # time.sleep(1)
         xpath = '//img[@class="price-banner--slogan--SlQzWHE pdp-comp-banner-slogan"]'
+        product_price = 0
+        shipping_price = 0
+        total_value = 0 
         image_elements = driver.find_elements(By.XPATH, xpath)
         target_image_url = "https://ae01.alicdn.com/kf/Sabdabe1e0ed84a179ab6c06fc9f316769/380x144.png_.webp"
         if image_elements or target_image_url in driver.page_source:
@@ -75,9 +78,6 @@ def scrape_and_display(product_url):
             result["result_text"] = sentence
         page_source = driver.page_source
         soup = BeautifulSoup(page_source, 'html.parser')
-        print("==========================")
-        print(soup)
-        print("==========================")
         product_price_element = soup.find('div', class_='es--wrap--erdmPRe')
         product_price_text = product_price_element.text.strip().replace('€', '') if product_price_element else 'Not found'
         shipping_price_element = soup.find('div', class_='dynamic-shipping-titleLayout')
