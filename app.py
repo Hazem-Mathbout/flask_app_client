@@ -21,7 +21,7 @@ def click_on_elements(driver):
         # first_element_to_click = driver.find_element(By.CSS_SELECTOR, '.ship-to--menuItem--WdBDsYl')
         action = ActionChains(driver)
         action.move_to_element(first_element_to_click).click().perform()
-        time.sleep(1)
+        time.sleep(0.5)
         second_element_to_click = WebDriverWait(driver, 4).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, '.es--saveBtn--w8EuBuy'))
         )
@@ -57,12 +57,10 @@ def scrape_and_display(product_url):
     # chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--headless')
     # chrome_options.add_argument('--disable-gpu')
-    # chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--no-sandbox')
     # chrome_options.add_argument('--ignore-certificate-errors')
     chrome_options.add_argument('--allow-running-insecure-content')
     # chrome_options.add_argument("--disable-dev-shm-usage")
-    # chrome_options.add_argument('--headless')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.6167.85 Safari/537.36'
     chrome_options.add_argument(f'user-agent={user_agent}')
     driver = webdriver.Chrome(service=service, options=chrome_options)
@@ -79,7 +77,7 @@ def scrape_and_display(product_url):
     try:
         driver.get(product_url)
         click_on_elements(driver)
-        # time.sleep(1)
+        time.sleep(0.5)
         xpath = '//img[@class="price-banner--slogan--SlQzWHE pdp-comp-banner-slogan"]'
         image_elements = driver.find_elements(By.XPATH, xpath)
         target_image_url = "https://ae01.alicdn.com/kf/Sabdabe1e0ed84a179ab6c06fc9f316769/380x144.png_.webp"
@@ -185,7 +183,7 @@ def index():
         return render_template('index.html', result=result)
     return render_template('index.html', result=None)
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False,host= '0.0.0.0', threaded=True)
 
 
 
