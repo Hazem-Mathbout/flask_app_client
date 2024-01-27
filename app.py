@@ -35,10 +35,10 @@ def scrape_and_display(product_url):
     # drivers_directory = "./drivers"
     # files_in_drivers = os.listdir(drivers_directory)
     # print("List files in the 'drivers' directory:", files_in_drivers)
-    chrome_options.binary_location = os.environ.get("/usr/bin/google-chrome")
+    # chrome_options.binary_location = os.environ.get("/usr/bin/google-chrome")
     # chrome_driver_path = ChromeDriverManager().install()
-    # chrome_driver_path = os.path.abspath("./drivers/chromedriver")
-    # service = webdriver.ChromeService(executable_path= ChromeDriverManager().install())
+    chrome_driver_path = os.path.abspath("./drivers/chromedriver")
+    service = webdriver.ChromeService(executable_path= chrome_driver_path)
     
     # service = webdriver.ChromeService(executable_path= ChromeDriverManager().install())
     chrome_options.add_argument("--window-size=1920,1080")
@@ -56,7 +56,7 @@ def scrape_and_display(product_url):
     chrome_options.add_argument('--headless')
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.28 Safari/537.36'
     chrome_options.add_argument(f'user-agent={user_agent}')
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=service, options=chrome_options)
     result = {
         "result_text": "",
         "price": 0,
