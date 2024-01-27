@@ -25,8 +25,10 @@ def extract_numerical_value(text):
     try:
         return float(''.join(c for c in text if c.isdigit() or c in ['.', ',']))
     except ValueError:
+        print("Error!! in extract_numerical_value function...")
         return 0
 def scrape_and_display(product_url):
+    print("============Start Selenuim==========")
     chrome_options = webdriver.ChromeOptions()
     # print("Current directory:", os.getcwd())
     # print("List files in the current directory:", os.listdir())
@@ -62,14 +64,14 @@ def scrape_and_display(product_url):
         "total": 0,
         "get_day": 0  
     }
+    product_price = 0
+    shipping_price = 0
+    total_value = 0 
     try:
         driver.get(product_url)
         click_on_elements(driver)
         # time.sleep(1)
         xpath = '//img[@class="price-banner--slogan--SlQzWHE pdp-comp-banner-slogan"]'
-        product_price = 0
-        shipping_price = 0
-        total_value = 0 
         image_elements = driver.find_elements(By.XPATH, xpath)
         target_image_url = "https://ae01.alicdn.com/kf/Sabdabe1e0ed84a179ab6c06fc9f316769/380x144.png_.webp"
         if image_elements or target_image_url in driver.page_source:
