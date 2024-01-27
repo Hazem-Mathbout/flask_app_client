@@ -9,11 +9,11 @@ RUN apt-get update && \
     pip install --no-cache-dir -r requirements.txt
 COPY . .
 # Create a directory to store the chromedriver
-RUN mkdir /app/drivers
+# RUN mkdir /app/drivers
 # Copy chromedriver to the desired location in the container
-COPY drivers/chromedriver /app/drivers/
+COPY drivers/chromedriver .
 # Set execute permissions on chromedriver
-RUN chmod +x /app/drivers/chromedriver
+RUN chmod +x drivers/chromedriver
 
 # CMD uvicorn main:app --host 0.0.0.0 --port $PORT
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:80"]
