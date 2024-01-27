@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+# from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 
 from selenium.webdriver.common.action_chains import ActionChains
 from bs4 import BeautifulSoup
-from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import os 
+# import os 
 import time
 
 app = Flask(__name__)
@@ -50,19 +50,19 @@ def scrape_and_display(product_url):
     service = webdriver.ChromeService(executable_path= chrome_driver_path)
     
     # service = webdriver.ChromeService(executable_path= ChromeDriverManager().install())
-    chrome_options.add_argument("--window-size=1920,1080")
-    chrome_options.add_argument("--disable-extensions")
-    chrome_options.add_argument("--proxy-server='direct://'")
-    chrome_options.add_argument("--proxy-bypass-list=*")
-    chrome_options.add_argument("--start-maximized")
+    # chrome_options.add_argument("--window-size=1920,1080")
+    # chrome_options.add_argument("--disable-extensions")
+    # chrome_options.add_argument("--proxy-server='direct://'")
+    # chrome_options.add_argument("--proxy-bypass-list=*")
+    # chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--disable-dev-shm-usage')
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--ignore-certificate-errors')
-    chrome_options.add_argument('--allow-running-insecure-content')
-    chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--disable-gpu')
+    # chrome_options.add_argument('--disable-dev-shm-usage')
+    # chrome_options.add_argument('--no-sandbox')
+    # chrome_options.add_argument('--ignore-certificate-errors')
+    # chrome_options.add_argument('--allow-running-insecure-content')
+    # chrome_options.add_argument("--disable-dev-shm-usage")
+    # chrome_options.add_argument('--headless')
     # user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.5615.28 Safari/537.36'
     # chrome_options.add_argument(f'user-agent={user_agent}')
     driver = webdriver.Chrome(service=service, options=chrome_options)
